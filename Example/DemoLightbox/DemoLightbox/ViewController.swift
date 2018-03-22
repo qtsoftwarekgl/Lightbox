@@ -44,9 +44,18 @@ class ViewController: UIViewController {
     ]
     
     let controller = LightboxController(images: images)
-    controller.dynamicBackground = true
+    controller.pageDelegate = self
+    controller.initialPage = 2
+    controller.dynamicBackground = false
     
     present(controller, animated: true, completion: nil)
   }
+    
 }
-
+extension ViewController : LightboxControllerPageDelegate{
+    func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
+        
+    }
+    
+    
+}
