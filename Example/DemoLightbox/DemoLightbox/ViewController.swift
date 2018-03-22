@@ -45,7 +45,7 @@ class ViewController: UIViewController {
     
     let controller = LightboxController(images: images)
     controller.pageDelegate = self
-    controller.initialPage = 2
+    controller.initialPage = 0
     controller.dynamicBackground = false
     
     present(controller, animated: true, completion: nil)
