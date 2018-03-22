@@ -171,7 +171,7 @@ open class LightboxController: UIViewController {
     transitionManager.scrollView = scrollView
     transitioningDelegate = transitionManager
 
-    [scrollView, overlayView, headerView, footerView].forEach { view.addSubview($0) }
+    [scrollView, overlayView, footerView , headerView].forEach { view.addSubview($0) }
     overlayView.addGestureRecognizer(overlayTapGestureRecognizer)
 
     configurePages(initialImages)
@@ -199,7 +199,7 @@ open class LightboxController: UIViewController {
 
     footerView.frame.origin = CGPoint(
       x: 0,
-      y: view.bounds.height - footerView.frame.height
+      y: 0
     )
 
     headerView.frame = CGRect(

@@ -9,7 +9,7 @@ open class FooterView: UIView {
 
   open fileprivate(set) lazy var infoLabel: InfoLabel = { [unowned self] in
     let label = InfoLabel(text: "")
-    label.isHidden = !LightboxConfig.InfoLabel.enabled
+    label.isHidden = true
 
     label.textColor = LightboxConfig.InfoLabel.textColor
     label.isUserInteractionEnabled = true
@@ -22,19 +22,19 @@ open class FooterView: UIView {
     let label = UILabel(frame: CGRect.zero)
     label.isHidden = !LightboxConfig.PageIndicator.enabled
     label.numberOfLines = 1
-
+    
     return label
   }()
 
   open fileprivate(set) lazy var separatorView: UIView = { [unowned self] in
     let view = UILabel(frame: CGRect.zero)
-    view.isHidden = !LightboxConfig.PageIndicator.enabled
+    view.isHidden = true
     view.backgroundColor = LightboxConfig.PageIndicator.separatorColor
 
     return view
   }()
 
-  let gradientColors = [UIColor(hex: "040404").alpha(0.1), UIColor(hex: "040404")]
+  let gradientColors = [UIColor.clear, UIColor.clear]
   open weak var delegate: FooterViewDelegate?
 
   // MARK: - Initializers
@@ -43,9 +43,9 @@ open class FooterView: UIView {
     super.init(frame: CGRect.zero)
 
     backgroundColor = UIColor.clear
-    _ = addGradientLayer(gradientColors)
+//    _ = addGradientLayer(gradientColors)
 
-    [pageLabel, infoLabel, separatorView].forEach { addSubview($0) }
+    [pageLabel, separatorView].forEach { addSubview($0) }
   }
 
   public required init?(coder aDecoder: NSCoder) {
@@ -69,11 +69,11 @@ open class FooterView: UIView {
   func updateText(_ text: String) {
     infoLabel.fullText = text
 
-    if text.isEmpty {
+//    if text.isEmpty {
       _ = removeGradientLayer()
-    } else if !infoLabel.expanded {
-      _ = addGradientLayer(gradientColors)
-    }
+//    } else if !infoLabel.expanded {
+//      _ = addGradientLayer(gradientColors)
+//    }
   }
 
   open override func layoutSubviews() {
@@ -89,7 +89,7 @@ open class FooterView: UIView {
 
       pageLabel.frame.origin = CGPoint(
         x: (frame.width - pageLabel.frame.width) / 2,
-        y: frame.height - pageLabel.frame.height - 2 - bottomPadding
+        y: 30 + bottomPadding
       )
     }
 
