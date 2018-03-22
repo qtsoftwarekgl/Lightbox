@@ -82,14 +82,14 @@ open class FooterView: UIView {
     do {
       let bottomPadding: CGFloat
       if #available(iOS 11, *) {
-        bottomPadding = safeAreaInsets.bottom
+        bottomPadding = safeAreaInsets.top
       } else {
-        bottomPadding = 0
+        bottomPadding = 20
       }
 
       pageLabel.frame.origin = CGPoint(
         x: (frame.width - pageLabel.frame.width) / 2,
-        y: 30 + bottomPadding
+        y: bottomPadding + 5
       )
     }
 

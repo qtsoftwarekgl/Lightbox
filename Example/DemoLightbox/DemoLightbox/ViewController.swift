@@ -44,7 +44,12 @@ class ViewController: UIViewController {
     ]
     
     let controller = LightboxController(images: images)
+//    controller.headerView.closeButton.setImage(UIImage(named: "grid")?.withRenderingMode(.alwaysOriginal), for: .normal)
+    
     controller.pageDelegate = self
+    LightboxConfig.CloseButton.text = ""
+    LightboxConfig.CloseButton.image = UIImage(named: "grid")?.withRenderingMode(.alwaysOriginal)
+    
     controller.initialPage = 0
     controller.dynamicBackground = false
     
