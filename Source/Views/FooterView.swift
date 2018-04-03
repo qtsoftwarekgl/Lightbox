@@ -59,7 +59,7 @@ open class FooterView: UIView {
   }
 
   func updatePage(_ page: Int, _ numberOfPages: Int) {
-    let text = "\(page)/\(numberOfPages)"
+    let text = "\(page) of \(numberOfPages)"
 
     pageLabel.attributedText = NSAttributedString(string: text,
       attributes: LightboxConfig.PageIndicator.textAttributes)
