@@ -49,17 +49,27 @@ class ViewController: UIViewController {
     controller.pageDelegate = self
     LightboxConfig.CloseButton.text = ""
     LightboxConfig.CloseButton.image = UIImage(named: "grid")?.withRenderingMode(.alwaysOriginal)
+    controller.dismissalDelegate = self
     
-    controller.initialPage = 0
+    
+    controller.initialPage = 2
     controller.dynamicBackground = false
+    present(controller, animated: true) {
+        LightboxConfig.handleVideo(controller, URL(string:"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)
+    }
     
-    present(controller, animated: true, completion: nil)
   }
     
 }
 extension ViewController : LightboxControllerPageDelegate{
     func lightboxController(_ controller: LightboxController, didMoveToPage page: Int) {
         
+    }
+}
+
+extension ViewController : LightboxControllerDismissalDelegate{
+    func lightboxControllerWillDismiss(_ controller: LightboxController) {
+        print("dismissed " + "\(controller)")
     }
     
     
