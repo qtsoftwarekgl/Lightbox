@@ -413,7 +413,9 @@ extension LightboxController: HeaderViewDelegate {
     closeButton.isEnabled = false
     presented = false
     dismissalDelegate?.lightboxControllerWillDismiss(self)
-//    dismiss(animated: true, completion: nil)
+    if LightboxConfig.CloseButton.isGridButton == false{
+      dismiss(animated: true, completion: nil)
+    }
   }
 }
 

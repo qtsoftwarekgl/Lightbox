@@ -58,6 +58,7 @@ class ViewController: UIViewController {
     
     controller.pageDelegate = self
     LightboxConfig.CloseButton.text = ""
+    LightboxConfig.CloseButton.isGridButton = false
     LightboxConfig.CloseButton.image = UIImage(named: "grid")?.withRenderingMode(.alwaysOriginal)
     controller.dismissalDelegate = self
     

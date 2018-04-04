@@ -57,7 +57,8 @@ public class LightboxConfig {
     public static var size: CGSize?
     public static var text = NSLocalizedString("Close", comment: "")
     public static var image: UIImage?
-
+    public static var isGridButton = false
+    
     public static var textAttributes: [NSAttributedStringKey: Any] = [
       .font: UIFont.boldSystemFont(ofSize: 16),
       .foregroundColor: UIColor.white,
