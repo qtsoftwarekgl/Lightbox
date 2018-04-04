@@ -22,6 +22,16 @@ class ViewController: UIViewController {
     view.backgroundColor = UIColor.white
     view.addSubview(showButton)
   }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("view will appear called")
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("view will appear called")
+    }
   
   // MARK: - Action methods
   
