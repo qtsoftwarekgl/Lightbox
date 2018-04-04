@@ -45,32 +45,39 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
     switch gesture.state {
     case .began:
       interactive = true
-//      lightboxController?.presented = false
+      lightboxController?.presented = false
 //      lightboxController?.dismiss(animated: true, completion: nil)
       if let origin = scrollView?.frame.origin { initialOrigin = origin }
     case .changed:
       update(percentage)
+      print(percentage)
       scrollView?.frame.origin.y = initialOrigin.y + translation.y
     case .ended, .cancelled:
 
-      var time = translation.y * 3 / abs(velocity.y)
+      var time = translation.y * 3  / abs(velocity.y)
       if time > 1 { time = 0.7 }
 
       interactive = false
-      lightboxController?.presented = true
+      lightboxController?.presented = false
 
       if percentage > 0.1 {
-        finish()
+        
         guard let controller = lightboxController else { return }
-
+        
         controller.headerView.alpha = 0
         controller.footerView.alpha = 0
-
+//controller.view.alpha = 0
+        print(time)
         UIView.animate(withDuration: TimeInterval(time), delay: 0, options: [.allowUserInteraction], animations: {
           self.scrollView?.frame.origin.y = translation.y * 3
           controller.view.alpha = 0
-          controller.view.backgroundColor = UIColor.black.withAlphaComponent(0)
-          }, completion: { _ in })
+          controller.view.backgroundColor = UIColor.clear
+          }, completion: { _ in
+            self.finish()
+//            self.lightboxController?.presented = false
+//            self.lightboxController?.dismiss(animated: true, completion: nil)
+            
+        })
       } else {
         cancel()
 
@@ -88,8 +95,9 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
     super.finish()
 
     guard let lightboxController = lightboxController else { return }
-//    interactive = true
+    interactive = true
     lightboxController.presented = false
+    
     lightboxController.dismiss(animated: true, completion: nil)
 //    lightboxController.dismissalDelegate?.lightboxControllerWillDismiss(lightboxController)
   }
