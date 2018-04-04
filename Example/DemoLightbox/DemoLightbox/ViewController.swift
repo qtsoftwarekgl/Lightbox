@@ -63,7 +63,9 @@ class ViewController: UIViewController {
     
     
     controller.initialPage = 2
-    controller.dynamicBackground = false
+    controller.dynamicBackground = true
+    controller.modalTransitionStyle = .crossDissolve
+    controller.modalPresentationStyle = .currentContext
     present(controller, animated: true) {
         LightboxConfig.handleVideo(controller, URL(string:"https://clips.vorwaerts-gmbh.de/big_buck_bunny.mp4")!)
     }

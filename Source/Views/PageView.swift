@@ -88,11 +88,12 @@ class PageView: UIScrollView {
     maximumZoomScale = LightboxConfig.Zoom.maximumScale
     showsHorizontalScrollIndicator = false
     showsVerticalScrollIndicator = false
-
     let doubleTapRecognizer = UITapGestureRecognizer(target: self, action: #selector(scrollViewDoubleTapped(_:)))
     doubleTapRecognizer.numberOfTapsRequired = 2
     doubleTapRecognizer.numberOfTouchesRequired = 1
-    addGestureRecognizer(doubleTapRecognizer)
+    if image.videoURL == nil {
+        addGestureRecognizer(doubleTapRecognizer)
+    }
 
     let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped(_:)))
     addGestureRecognizer(tapRecognizer)

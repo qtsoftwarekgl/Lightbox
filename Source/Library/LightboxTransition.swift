@@ -45,11 +45,12 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
     switch gesture.state {
     case .began:
       interactive = true
-      lightboxController?.presented = false
+//      lightboxController?.presented = false
 //      lightboxController?.dismiss(animated: true, completion: nil)
       if let origin = scrollView?.frame.origin { initialOrigin = origin }
     case .changed:
       update(percentage)
+//      self.lightboxController?.view.alpha = 1-percentage
       print(percentage)
       scrollView?.frame.origin.y = initialOrigin.y + translation.y
     case .ended, .cancelled:
@@ -70,8 +71,8 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
         print(time)
         UIView.animate(withDuration: TimeInterval(time/1.5), delay: 0, options: [.allowUserInteraction], animations: {
           self.scrollView?.frame.origin.y = translation.y * 3
-          controller.view.alpha = 0
-          controller.view.backgroundColor = UIColor.clear
+//          controller.view.alpha = 0
+//          controller.view.backgroundColor = UIColor.clear
           }, completion: { _ in
             self.finish()
 //            self.lightboxController?.presented = false
@@ -83,6 +84,7 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
 
         DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 0.035) {
           UIView.animate(withDuration: 0.35, animations: {
+            
             self.scrollView?.frame.origin = self.initialOrigin
           })
         }
