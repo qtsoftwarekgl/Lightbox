@@ -65,14 +65,17 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
             
             controller.headerView.alpha = 0
             controller.footerView.alpha = 0
+            DispatchQueue.main.async {
+                self.finish()
+            }
             
             UIView.animate(withDuration: TimeInterval(time), delay: 0, options: [.allowUserInteraction], animations: {
                 self.scrollView?.frame.origin.y = translation.y * 3
                 controller.view.alpha = 0
-                self.finish()
-//                controller.view.backgroundColor = UIColor.white.withAlphaComponent(0)
+           
             }, completion: { _ in
-                
+                guard let lightboxController = self.lightboxController else { return }
+                lightboxController.dismissalDelegate?.lightboxControllerWillDismiss(lightboxController, false)
             })
         } else {
             cancel()
@@ -91,10 +94,10 @@ class LightboxTransition: UIPercentDrivenInteractiveTransition {
     super.finish()
 
     guard let lightboxController = lightboxController else { return }
-    interactive = true
-    lightboxController.presented = false
+    interactive = false
+    lightboxController.presented = true
     lightboxController.dismiss(animated: true, completion: nil)
-//    lightboxController.dismissalDelegate?.lightboxControllerWillDismiss(lightboxController)
+//    lightboxController.dismissalDelegate?.lightboxControllerWillDismiss(lightboxController, false)
   }
 }
 

@@ -81,9 +81,10 @@ extension ViewController : LightboxControllerPageDelegate{
 }
 
 extension ViewController : LightboxControllerDismissalDelegate{
-    func lightboxControllerWillDismiss(_ controller: LightboxController) {
-        print("dismissed " + "\(controller)")
+    func lightboxControllerWillDismiss(_ controller: LightboxController, _ isFromMenuButton: Bool) {
     }
+    
+
     
     
 }

@@ -8,7 +8,7 @@ public protocol LightboxControllerPageDelegate: class {
 
 public protocol LightboxControllerDismissalDelegate: class {
 
-  func lightboxControllerWillDismiss(_ controller: LightboxController)
+    func lightboxControllerWillDismiss(_ controller: LightboxController, _ isFromMenuButton : Bool)
 }
 
 public protocol LightboxControllerTouchDelegate: class {
@@ -412,7 +412,7 @@ extension LightboxController: HeaderViewDelegate {
   func headerView(_ headerView: HeaderView, didPressCloseButton closeButton: UIButton) {
     closeButton.isEnabled = false
     presented = false
-    dismissalDelegate?.lightboxControllerWillDismiss(self)
+    dismissalDelegate?.lightboxControllerWillDismiss(self, true)
     if LightboxConfig.CloseButton.isGridButton == false{
       dismiss(animated: true, completion: nil)
     }
