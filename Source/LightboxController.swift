@@ -84,7 +84,7 @@ open class LightboxController: UIViewController {
   open fileprivate(set) var currentPage = 0 {
     didSet {
       currentPage = min(numberOfPages - 1, max(0, currentPage))
-      footerView.updatePage(currentPage + 1, numberOfPages)
+        footerView.updatePage(currentPage + 1, numberOfPages)
       footerView.updateText(pageViews[currentPage].image.text)
 
       if currentPage == numberOfPages - 1 {
@@ -199,7 +199,7 @@ open class LightboxController: UIViewController {
 
     footerView.frame.origin = CGPoint(
       x: 0,
-      y: 0
+      y: 0//view.bounds.height - footerView.frame.height
     )
 
     headerView.frame = CGRect(

@@ -9,7 +9,7 @@ open class FooterView: UIView {
 
   open fileprivate(set) lazy var infoLabel: InfoLabel = { [unowned self] in
     let label = InfoLabel(text: "")
-    label.isHidden = true
+    label.isHidden = !LightboxConfig.InfoLabel.enabled
 
     label.textColor = LightboxConfig.InfoLabel.textColor
     label.isUserInteractionEnabled = true
@@ -43,9 +43,9 @@ open class FooterView: UIView {
     super.init(frame: CGRect.zero)
 
     backgroundColor = UIColor.clear
-//    _ = addGradientLayer(gradientColors)
+    _ = addGradientLayer(gradientColors)
 
-    [pageLabel, separatorView].forEach { addSubview($0) }
+    [pageLabel,infoLabel,  separatorView].forEach { addSubview($0) }
   }
 
   public required init?(coder aDecoder: NSCoder) {
@@ -69,11 +69,12 @@ open class FooterView: UIView {
   func updateText(_ text: String) {
     infoLabel.fullText = text
 
-//    if text.isEmpty {
-      _ = removeGradientLayer()
-//    } else if !infoLabel.expanded {
-//      _ = addGradientLayer(gradientColors)
-//    }
+    if text.isEmpty {
+        _ = removeGradientLayer()
+    } else if !infoLabel.expanded {
+        _ = addGradientLayer(gradientColors)
+    }
+    
   }
 
   open override func layoutSubviews() {
@@ -90,6 +91,7 @@ open class FooterView: UIView {
       pageLabel.frame.origin = CGPoint(
         x: (frame.width - pageLabel.frame.width) / 2,
         y: bottomPadding + 5
+
       )
     }
 
@@ -100,7 +102,7 @@ open class FooterView: UIView {
       height: 0.5
     )
 
-    infoLabel.frame.origin.y = separatorView.frame.minY - infoLabel.frame.height - 15
+    infoLabel.frame.origin.y = infoLabel.frame.height + 15
 
     resizeGradientLayer()
   }
