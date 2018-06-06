@@ -10,7 +10,7 @@ open class FooterView: UIView {
   open fileprivate(set) lazy var infoLabel: InfoLabel = { [unowned self] in
     let label = InfoLabel(text: "")
     label.isHidden = !LightboxConfig.InfoLabel.enabled
-
+    label.textAlignment = .center
     label.textColor = LightboxConfig.InfoLabel.textColor
     label.isUserInteractionEnabled = true
     label.delegate = self
@@ -90,7 +90,7 @@ open class FooterView: UIView {
 
       pageLabel.frame.origin = CGPoint(
         x: (frame.width - pageLabel.frame.width) / 2,
-        y: bottomPadding + 5
+        y: frame.height - pageLabel.frame.height - 2 - bottomPadding
 
       )
     }
@@ -102,7 +102,7 @@ open class FooterView: UIView {
       height: 0.5
     )
 
-    infoLabel.frame.origin.y = infoLabel.frame.height + 15
+    infoLabel.frame.origin.y = infoLabel.frame.height - 15
 
     resizeGradientLayer()
   }

@@ -42,7 +42,7 @@ public class LightboxConfig {
     public static var separatorColor = UIColor(hex: "3D4757")
 
     public static var textAttributes: [NSAttributedStringKey: Any] = [
-        .font: UIFont.boldSystemFont(ofSize: 16),
+        .font: UIFont.boldSystemFont(ofSize: 12),
         .foregroundColor: UIColor.white,
         .paragraphStyle: {
             var style = NSMutableParagraphStyle()
@@ -94,7 +94,7 @@ public class LightboxConfig {
     public static var ellipsisColor = UIColor(hex: "899AB9")
 
     public static var textAttributes: [NSAttributedStringKey: Any] = [
-      .font: UIFont.systemFont(ofSize: 12),
+      .font: UIFont.boldSystemFont(ofSize: 16),
       .foregroundColor: UIColor(hex: "DBDBDB")
     ]
   }
