@@ -79,32 +79,38 @@ open class FooterView: UIView {
 
   open override func layoutSubviews() {
     super.layoutSubviews()
-
-    do {
-      let bottomPadding: CGFloat
-      if #available(iOS 11, *) {
-        bottomPadding = safeAreaInsets.top
-      } else {
-        bottomPadding = 20
-      }
-
-      pageLabel.frame.origin = CGPoint(
-        x: (frame.width - pageLabel.frame.width) / 2,
-        y: frame.height - pageLabel.frame.height - 2 - bottomPadding
-
-      )
-    }
-
-    separatorView.frame = CGRect(
-      x: 0,
-      y: pageLabel.frame.minY - 2.5,
-      width: frame.width,
-      height: 0.5
-    )
-
-    infoLabel.frame.origin.y = infoLabel.frame.height
-
-    resizeGradientLayer()
+        var bottomPadding: CGFloat
+        do {
+            if #available(iOS 11, *) {
+                bottomPadding = safeAreaInsets.top
+            } else {
+                bottomPadding = 0
+            }
+            
+            bottomPadding = bottomPadding > 20.0 ? 15 : 0
+            
+            if #available(iOS 11.0, *) {
+                infoLabel.frame.origin.y = infoLabel.frame.height + bottomPadding
+            } else {
+                infoLabel.frame.origin.y = infoLabel.frame.height
+                // Fallback on earlier versions
+            }
+            
+            pageLabel.frame.origin = CGPoint(
+                x: (frame.width - pageLabel.frame.width) / 2,
+                y: infoLabel.frame.origin.y + infoLabel.frame.height + 10
+                
+            )
+        }
+        
+        separatorView.frame = CGRect(
+            x: 0,
+            y: pageLabel.frame.minY - 2.5,
+            width: frame.width,
+            height: 0.5
+        )
+        
+        resizeGradientLayer()
   }
 }
 
