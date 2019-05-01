@@ -102,7 +102,7 @@ open class FooterView: UIView {
       height: 0.5
     )
 
-    infoLabel.frame.origin.y = infoLabel.frame.height - 15
+    infoLabel.frame.origin.y = infoLabel.frame.height
 
     resizeGradientLayer()
   }
