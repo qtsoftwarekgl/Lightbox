@@ -10,12 +10,7 @@ open class LightboxImage {
   open var text: String
 
   // MARK: - Initialization
-    
-    internal init(text: String = "") {
-        self.text = text
-    }
-
-
+  
   internal init(text: String = "") {
     self.text = text
   }
