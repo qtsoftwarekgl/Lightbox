@@ -1,8 +1,8 @@
 import UIKit
 import Imaginary
-
+import Kingfisher
 open class LightboxImage {
-
+  open fileprivate(set) var animatedImage: UIImage?
   open fileprivate(set) var image: UIImage?
   open fileprivate(set) var imageURL: URL?
   open fileprivate(set) var videoURL: URL?
@@ -10,10 +10,17 @@ open class LightboxImage {
   open var text: String
 
   // MARK: - Initialization
-  
-  internal init(text: String = "") {
-    self.text = text
-  }
+    
+    internal init(text: String = "") {
+        self.text = text
+    }
+
+    public init(animatedImage: UIImage?, text: String = "", imageURL: URL) {
+        self.animatedImage = animatedImage
+        self.text = text
+        self.imageURL = imageURL
+    }
+
 
   public init(image: UIImage, text: String = "", videoURL: URL? = nil) {
     self.image = image
@@ -34,11 +41,15 @@ open class LightboxImage {
   }
 
   open func addImageTo(_ imageView: UIImageView, completion: ((UIImage?) -> Void)? = nil) {
-    if let image = image {
+    if let imageURL = imageURL, let animatedImage = animatedImage{
+        imageView.image = animatedImage
+        completion?(animatedImage)
+    }else if let image = image {
       imageView.image = image
       completion?(image)
     } else if let imageURL = imageURL {
       LightboxConfig.loadImage(imageView, imageURL, completion)
+        completion?(image)
     } else if let imageClosure = imageClosure {
       let img = imageClosure()
       imageView.image = img
