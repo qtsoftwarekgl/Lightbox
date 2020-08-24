@@ -47,10 +47,10 @@ open class HeaderView: UIView {
     } else {
       button.sizeToFit()
     }
-
-    button.addTarget(self, action: #selector(deleteButtonDidPress(_:)),
-      for: .touchUpInside)
-
+    if LightboxConfig.DeleteButton.isCustom == false {
+      button.addTarget(self, action: #selector(deleteButtonDidPress(_:)),
+        for: .touchUpInside)
+    }
     if let image = LightboxConfig.DeleteButton.image {
         button.setBackgroundImage(image, for: UIControl.State())
     }
