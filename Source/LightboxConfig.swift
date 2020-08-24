@@ -78,6 +78,7 @@ public class LightboxConfig {
     public static var size: CGSize?
     public static var text = NSLocalizedString("Delete", comment: "")
     public static var image: UIImage?
+    public static var isCustom = false
 
     public static var textAttributes: [NSAttributedString.Key: Any] = [
       .font: UIFont.boldSystemFont(ofSize: 16),
