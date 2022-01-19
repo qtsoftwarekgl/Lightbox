@@ -21,9 +21,17 @@ public class LightboxConfig {
   public static var loadImage: (UIImageView, URL, ((UIImage?) -> Void)?) -> Void = { (imageView, imageURL, completion) in
       
       if imageURL.pathExtension.lowercased() == "gif" {
-        imageView.kf.setImage(with: imageURL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
-            completion?(image)
-        })
+//         imageView.kf.setImage(with: imageURL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { (image, _, _, _) in
+//             completion?(image)
+//         })
+           imageView.kf.setImage(with: imageURL, placeholder: nil, options: nil, progressBlock: nil, completionHandler: { result in
+              switch result {
+              case .success(let value):
+                  completion?(value.image)
+              case .failure(let error):
+                  completion?(nil)
+              }
+          })
     } else {
         // Use Imaginary by default
         imageView.setImage(url: imageURL, placeholder: nil, completion: { result in
