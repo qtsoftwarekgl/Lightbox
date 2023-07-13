@@ -178,9 +178,12 @@ open class LightboxController: UIViewController {
 
     configurePages(initialImages)
 
-    goTo(initialPage, animated: false)
+    let btnLeftBar = UIBarButtonItem(image: UIImage(named: "btn_back"), style: .plain, target: self, action: #selector(btnBackClick))
+             self.navigationItem.leftBarButtonItem  = btnLeftBar
   }
-
+ @objc func btnBackClick(_ sender: Any){
+        self.dismiss(animated: false)
+    }
   open override func viewDidAppear(_ animated: Bool) {
     super.viewDidAppear(animated)
     if !presented {
@@ -330,6 +333,8 @@ open class LightboxController: UIViewController {
     UIView.animate(withDuration: duration, delay: delay, options: [], animations: {
       self.headerView.alpha = alpha
       self.footerView.alpha = alpha
+      self.navigationController?.navigationBar.alpha = alpha
+
 //      pageView?.playButton.alpha = alpha
     }, completion: nil)
   }
