@@ -190,6 +190,9 @@ open class LightboxController: UIViewController {
     if !presented {
       presented = true
       configureLayout(view.bounds.size)
+      UIView.animate(withDuration:0.1, delay: 0.5, options: [], animations: {
+           self.navigationController?.navigationBar.alpha = 0
+        }, completion: nil)
     }
   }
 
